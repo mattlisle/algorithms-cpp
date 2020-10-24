@@ -1,7 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <limits>
-#include <cstdlib>
+#include <sort.hpp>
 
 using namespace std;
 
@@ -11,15 +8,6 @@ void print_vector(vector<int>& vec) {
   }
   cout << "\n";
 }
-
-class MergeSorter {
-    void merge(vector<int>&, int, int, int);
-    void merge_sort(vector<int>&, int, int);
-  public:
-    vector<int> result;
-    void sort();
-    MergeSorter(vector<int> start);
-};
 
 MergeSorter::MergeSorter(vector<int> start) {
   result = start;
@@ -67,19 +55,4 @@ void MergeSorter::merge(vector<int>& vec, int low_idx, int mid_idx, int high_idx
       ++j;
     }
   }
-}
-
-int main(int argc, char** argv) {
-  vector<int> unsorted;
-  
-  for (int i = 1; i < argc; ++i) {
-    int int_arg = strtol(argv[i], nullptr, 0);
-    unsorted.push_back(int_arg);
-  }
-  
-  auto sorter = MergeSorter(unsorted);
-  sorter.sort();
-  print_vector(sorter.result);
-
-  return 0;
 }
