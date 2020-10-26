@@ -11,7 +11,6 @@ void print_vector(vector<int>& vec) {
 
 MergeSorter::MergeSorter(vector<int> start) {
   result = start;
-  print_vector(result);
 };
 
 void MergeSorter::sort() {

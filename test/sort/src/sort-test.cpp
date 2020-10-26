@@ -22,9 +22,11 @@ class MergeSortTest : public ::testing::Test {
 
     };
 
-    virtual void test_sorting_of(vector<int>& vec) {
+    virtual void test_sorting_of(vector<int> vec) {
       MergeSorter sorter {vec};
       sorter.sort();
+      EXPECT_EQ(sorter.result.size(), vec.size());
+
       stringstream message;
       message << "sorting failed on this subsequence: ";
       int prev = numeric_limits<int>::min();
