@@ -23,14 +23,14 @@ class MergeSortTest : public ::testing::Test {
     };
 
     virtual void test_sorting_of(vector<int> vec) {
-      MergeSorter sorter {vec};
-      sorter.sort();
-      EXPECT_EQ(sorter.result.size(), vec.size());
+      Sorter sorter {vec};
+      auto result = sorter.merge_sort();
+      EXPECT_EQ(result.size(), vec.size());
 
       stringstream message;
       message << "sorting failed on this subsequence: ";
       int prev = numeric_limits<int>::min();
-      for (const auto& elem: sorter.result) {
+      for (const auto& elem: result) {
         message << elem << " ";
         if (prev > elem) {
           FAIL() << message.str();

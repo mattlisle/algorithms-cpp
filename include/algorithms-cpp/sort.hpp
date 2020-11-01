@@ -6,17 +6,15 @@
 #include <limits>
 #include <cstdlib>
 
-using namespace std;
+void print_vector(const std::vector<int>& vec);
 
-void print_vector(vector<int>& vec);
-
-class MergeSorter {
-    void merge(vector<int>&, int, int, int);
-    void merge_sort(vector<int>&, int, int);
+class Sorter {
+    static void merge(std::vector<int>* vec_ptr, size_t low_idx, size_t mid_idx, size_t high_idx);
+    static void merge_sort_helper(std::vector<int>* vec_ptr, size_t low_idx, size_t high_idx);
+    std::vector<int> source;
   public:
-    vector<int> result;
-    void sort();
-    MergeSorter(vector<int> start);
+    auto merge_sort() -> std::vector<int>;
+    explicit Sorter(const std::vector<int>& source);
 };
 
 #endif // CMAKE_SORT_H

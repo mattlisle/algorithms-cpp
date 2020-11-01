@@ -32,11 +32,11 @@ int main(int argc, char** argv) {
   cout << "Input: ";
   print_vector(unsorted);
 
-  auto sorter = MergeSorter(unsorted);
-  sorter.sort();
+  auto sorter = Sorter(unsorted);
+  auto result = sorter.merge_sort();
 
   cout << "Output: ";
-  print_vector(sorter.result);
+  print_vector(result);
 
   return 0;
 }
