@@ -9,7 +9,7 @@ static const char* const USAGE =
   "Description:\n"
   "  Sorts the input array in ascending order\n";
 
-int main(int argc, char** argv) {
+auto main(int argc, char** argv) -> int {
 
   if (argc == 1) {
     cout << HEADER << USAGE;
@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
   
   try {
     for (int i = 1; i < argc; ++i) {
-      int int_arg = stoi(argv[i], nullptr, 0);
+      int int_arg = stoi(argv[i], nullptr, 0); // NOLINT
       unsorted.push_back(int_arg);
     }
   } catch (const exception& ex) {
