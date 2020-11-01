@@ -6,6 +6,30 @@
 using namespace std;
 
 class MergeSortTest : public ::testing::Test {
+  private:
+    static void test_contents_match(const vector<int>& source, const vector<int>& result) {
+      ASSERT_EQ(result.size(), source.size());
+      map<int, set<int>> values_to_idxs;
+      for (size_t i = 0; i < source.size(); ++i) {
+        auto value = source[i];
+        set<int> idxs {};
+        if (values_to_idxs.find(value) != values_to_idxs.end()) {
+          idxs = values_to_idxs[value];
+        }
+        idxs.insert(i);
+        values_to_idxs[value] = idxs;
+      }
+      for (const auto& elem: result) {
+        if (values_to_idxs.find(elem) != values_to_idxs.end()) {
+          auto idxs = values_to_idxs[elem];
+          ASSERT_FALSE(idxs.empty());
+          idxs.erase(idxs.begin());
+        } else {
+          FAIL() << "Element in result not present in source: " << elem;
+        }
+      }
+    }
+
   public:
     const vector<int> zero_element {};
     const vector<int> one_element {1};
@@ -25,7 +49,6 @@ class MergeSortTest : public ::testing::Test {
     static void test_sorting_of(const vector<int>& vec) {
       Sorter sorter {vec};
       auto result = sorter.merge_sort();
-      EXPECT_EQ(result.size(), vec.size());
 
       stringstream message;
       message << "sorting failed on this subsequence: ";
