@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class MergeSortTest : public ::testing::Test {
+class SortTest : public ::testing::Test {
   private:
     static void test_contents_match(const vector<int>& source, const vector<int>& result) {
       ASSERT_EQ(result.size(), source.size());
@@ -63,26 +63,26 @@ class MergeSortTest : public ::testing::Test {
     }
 };
 
-TEST_F(MergeSortTest, GivenZeroElements_Ok) { // NOLINT
+TEST_F(SortTest, GivenZeroElements_Ok) { // NOLINT
   test_sorting_of(zero_element);
 }
 
-TEST_F(MergeSortTest, GivenOneElement_Ok) { // NOLINT
+TEST_F(SortTest, GivenOneElement_Ok) { // NOLINT
   test_sorting_of(one_element);
 }
 
-TEST_F(MergeSortTest, GivenPositiveElements_Ok) { // NOLINT
+TEST_F(SortTest, GivenPositiveElements_Ok) { // NOLINT
   test_sorting_of(positive_elements);
 }
 
-TEST_F(MergeSortTest, GivenNegativeElements_Ok) { // NOLINT
+TEST_F(SortTest, GivenNegativeElements_Ok) { // NOLINT
   test_sorting_of(negative_elements);
 }
 
-TEST_F(MergeSortTest, GivenMixedElements_Ok) { // NOLINT
+TEST_F(SortTest, GivenMixedElements_Ok) { // NOLINT
   test_sorting_of(mixed_elements);
 }
 
-TEST_F(MergeSortTest, GivenLargeElements_Ok) { // NOLINT
+TEST_F(SortTest, GivenLargeElements_Ok) { // NOLINT
   test_sorting_of(large_elements);
 }
