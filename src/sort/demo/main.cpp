@@ -1,4 +1,5 @@
-#include <sort.hpp>
+#include "sort.hpp"
+#include "util.hpp"
 
 using namespace std;
 
@@ -30,13 +31,12 @@ auto main(int argc, char** argv) -> int {
   }
   
   cout << "Input: ";
-  print_vector(unsorted);
+  Util::print_vector(unsorted);
 
-  auto sorter = Sorter(unsorted);
-  auto result = sorter.merge_sort();
+  auto result = Sorter::merge_sort(unsorted);
 
   cout << "Output: ";
-  print_vector(result);
+  Util::print_vector(result);
 
   return 0;
 }

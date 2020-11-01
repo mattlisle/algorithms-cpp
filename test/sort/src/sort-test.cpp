@@ -47,8 +47,7 @@ class SortTest : public ::testing::Test {
     };
 
     static void test_sorting_of(const vector<int>& vec) {
-      Sorter sorter {vec};
-      auto result = sorter.merge_sort();
+      auto result = Sorter::merge_sort(vec);
 
       stringstream message;
       message << "sorting failed on this subsequence: ";

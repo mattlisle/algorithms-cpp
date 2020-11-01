@@ -1,20 +1,11 @@
-#include <sort.hpp>
+#include "sort.hpp"
+#include "util.hpp"
 #include <utility>
 
 using namespace std;
 
-void print_vector(const vector<int>& vec) {
-  for (auto elem : vec) {
-    cout << elem << " ";
-  }
-  cout << "\n";
-}
-
-Sorter::Sorter(const vector<int>& source) {
-  this->source = source;
-};
-
-auto Sorter::merge_sort() -> vector<int> {
+auto Sorter::merge_sort(const vector<int>& source) -> vector<int> {
+  Util::print_vector(source);
   vector<int> result(source);
   if (!result.empty()) { 
     merge_sort_helper(&result, 0, result.size() - 1);

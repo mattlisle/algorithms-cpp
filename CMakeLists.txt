@@ -16,6 +16,7 @@ set(LIB_DIR ${PROJECT_SOURCE_DIR}/lib)
 
 include_directories(${INCLUDE_DIR}/algorithms-cpp)
 
+add_subdirectory(src/util)
 add_subdirectory(src/sort)
 add_subdirectory(test/sort)
 add_subdirectory(lib/googletest)
