@@ -12,4 +12,5 @@ namespace Util {
     }
     cout << "\n";
   }
-}
+
+}  // namespace Util
