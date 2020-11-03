@@ -35,9 +35,9 @@ jobs:
       run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
 
     - name: Lint
-      working-directory: ${{runner.workspace}}
+      working-directory: ${{github.workspace}}
       shell: bash
-      run: pwd && python3 $GITHUB_WORKSPACE/scripts/run-clang-tidy.py files $GITHUB_WORKSPACE/src/ $GITHUB_WORKSPACE/test/
+      run: python3 scripts/run-clang-tidy.py files src/ test/
 
     - name: Build
       working-directory: ${{runner.workspace}}/build
