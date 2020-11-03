@@ -34,15 +34,10 @@ jobs:
       # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
       run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
 
-    - name: Sanity
-      working-directory: $GITHUB_WORKSPACE
-      shell: bash
-      run: pwd
-
     - name: Lint
-      working-directory: $GITHUB_WORKSPACE
+      working-directory: ${{runner.workspace}}
       shell: bash
-      run: python3 $GITHUB_WORKSPACE/scripts/run-clang-tidy.py files $GITHUB_WORKSPACE/src/ $GITHUB_WORKSPACE/test/
+      run: pwd && python3 $GITHUB_WORKSPACE/scripts/run-clang-tidy.py files $GITHUB_WORKSPACE/src/ $GITHUB_WORKSPACE/test/
 
     - name: Build
       working-directory: ${{runner.workspace}}/build
