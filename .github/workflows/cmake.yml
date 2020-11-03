@@ -34,6 +34,11 @@ jobs:
       # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
       run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
 
+    - name: Lint
+      working-directory: $GITHUB_WORKSPACE
+      shell: bash
+      run: python3 scripts/run-clang-tidy.py files src/ test/
+
     - name: Build
       working-directory: ${{runner.workspace}}/build
       shell: bash
