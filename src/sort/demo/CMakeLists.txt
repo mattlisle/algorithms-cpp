@@ -4,5 +4,7 @@ project(sort-demo)
 set(SOURCE_FILES main.cpp)
 
 add_executable(sort-demo ${SOURCE_FILES})
-target_link_libraries(sort-demo sort)
+
+target_link_libraries(sort-demo sort util)
+
 install(TARGETS sort-demo DESTINATION bin)

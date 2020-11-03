@@ -1,11 +1,9 @@
 #include "sort.hpp"
-#include "util.hpp"
 #include <utility>
 
 using namespace std;
 
 auto Sorter::merge_sort(const vector<int>& source) -> vector<int> {
-  Util::print_vector(source);
   vector<int> result(source);
   if (!result.empty()) { 
     merge_sort_helper(&result, 0, result.size() - 1);

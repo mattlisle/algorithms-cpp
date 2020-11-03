@@ -2,6 +2,7 @@
 #include "util.hpp"
 
 using namespace std;
+using namespace Util;
 
 static const char* const HEADER = "\nSorting Demo\n\n";
 static const char* const USAGE =
@@ -31,12 +32,12 @@ auto main(int argc, char** argv) -> int {
   }
   
   cout << "Input: ";
-  Util::print_vector(unsorted);
+  print_vector(unsorted);
 
   auto result = Sorter::merge_sort(unsorted);
 
   cout << "Output: ";
-  Util::print_vector(result);
+  print_vector(result);
 
   return 0;
 }
