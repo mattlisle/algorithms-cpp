@@ -37,7 +37,7 @@ jobs:
     - name: Lint
       working-directory: $GITHUB_WORKSPACE
       shell: bash
-      run: python3 scripts/run-clang-tidy.py files src/ test/
+      run: python3 $GITHUB_WORKSPACE/scripts/run-clang-tidy.py files $GITHUB_WORKSPACE/src/ $GITHUB_WORKSPACE/test/
 
     - name: Build
       working-directory: ${{runner.workspace}}/build
