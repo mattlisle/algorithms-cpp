@@ -37,7 +37,7 @@ jobs:
     - name: Sanity
       working-directory: $GITHUB_WORKSPACE
       shell: bash
-      run: echo $PWD
+      run: pwd
 
     - name: Lint
       working-directory: $GITHUB_WORKSPACE
