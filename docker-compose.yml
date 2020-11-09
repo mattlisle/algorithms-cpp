@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  algorithms:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mattlisle/algorithms-cpp:latest
+    volumes:
+      - .:/usr/src
+
