@@ -8,4 +8,5 @@ services:
     image: mattlisle/algorithms-cpp:latest
     volumes:
       - .:/usr/src
+      - /usr/src/build
 
