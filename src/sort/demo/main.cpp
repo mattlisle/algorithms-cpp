@@ -2,19 +2,16 @@
 #include "util.hpp"
 
 using namespace std;
-using namespace Util;
-
-static const char* const HEADER = "\nSorting Demo\n\n";
-static const char* const USAGE =
-  "Usage:\n"
-  "  ./sort-demo [numbers ...]\n\n"
-  "Description:\n"
-  "  Sorts the input array in ascending order\n";
+using namespace util;
 
 auto main(int argc, char** argv) -> int {
 
+  string header = "Sorting Demo";
+  string usage = "./sort-demo [numbers ...]";
+  string description = "Sorts the input array in ascending order";
+
   if (argc == 1) {
-    cout << HEADER << USAGE;
+    print_usage(header, usage, description);
     exit(0);
   }
 
@@ -27,7 +24,7 @@ auto main(int argc, char** argv) -> int {
     }
   } catch (const exception& ex) {
     cout << "Invalid argument provided, see usage below:" << endl;
-    cout << HEADER << USAGE;
+    print_usage(header, usage, description);
     exit(1);
   }
   

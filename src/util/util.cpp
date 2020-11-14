@@ -3,7 +3,7 @@
 
 using namespace std;
 
-namespace Util {
+namespace util {
 
 /// Prints some vector to stdout
 void print_vector(const vector<int>& vec) {
@@ -13,4 +13,16 @@ void print_vector(const vector<int>& vec) {
   cout << "\n";
 }
 
-}  // namespace Util
+void print_usage(
+  const std::string& header,
+  const std::string& usage,
+  const std::string& description
+) {
+  cout << endl << header << endl << endl;
+  cout << "Usage:" << endl;
+  cout << "  " << usage << endl << endl;
+  cout << "Description:" << endl;
+  cout << "  " << description << endl;
+}
+
+}  // namespace util
