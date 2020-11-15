@@ -10,30 +10,30 @@ using namespace std;
 namespace maxprofit {
 namespace {
 
-auto find_max_crossing_period(const vector<int>& price_history, int start_idx, int mid_idx, int end_idx) -> FinancialPlan {
-  int neg_inf = numeric_limits<int>::min();
-  int left_sum = neg_inf;
-  int right_sum = neg_inf;
-  int left_idx = 0;
-  int right_idx = 0;
-  int sum = 0;
-  for (int i = mid_idx; i >= start_idx; --i) {
-    sum += price_history[i];
+auto find_max_crossing_period(const vector<int>& price_history, size_t start_idx, size_t mid_idx, size_t end_idx) -> FinancialPlan {
+  long neg_inf = numeric_limits<long>::min();
+  long left_sum = neg_inf;
+  long right_sum = neg_inf;
+  size_t left_idx = 0;
+  size_t right_idx = 0;
+  long sum = 0;
+  for (auto i = mid_idx; i != start_idx - 1; --i) {
+    sum += price_history.at(i);
     if (sum > left_sum) {
       left_sum = sum;
       left_idx = i;
     }
   }
   sum = 0;
-  for (int i = mid_idx + 1; i <= end_idx; ++i) {
-    sum += price_history[i];
+  for (size_t i = mid_idx + 1; i != end_idx + 1; ++i) {
+    sum += price_history.at(i);
     if (sum > right_sum) {
       right_sum = sum;
       right_idx = i;
     }
   }
 
-  int both_sum = 0;
+  long both_sum = 0;
   if (left_sum != neg_inf) {
     both_sum += left_sum;
   }
@@ -45,9 +45,12 @@ auto find_max_crossing_period(const vector<int>& price_history, int start_idx, i
   return plan;
 }
 
-auto find_max_period(const vector<int>& price_history, int start_idx, int end_idx) -> FinancialPlan {
-  if (start_idx == end_idx) {
-    FinancialPlan plan(start_idx, end_idx, price_history[start_idx]);
+auto find_max_period(const vector<int>& price_history, size_t start_idx, size_t end_idx) -> FinancialPlan {
+  if (price_history.empty()) {
+    FinancialPlan plan {0, 0, 0};
+    return plan;
+  } else if (start_idx == end_idx) {
+    FinancialPlan plan {start_idx, end_idx, price_history.at(start_idx)};
     return plan;
   } else {
     auto mid_idx = (start_idx + end_idx) / 2;
@@ -67,8 +70,8 @@ auto find_max_period(const vector<int>& price_history, int start_idx, int end_id
 
 }  // namespace
 
-auto create_plan(const vector<int>& price_history) -> FinancialPlan {
-  return find_max_period(price_history, 0, price_history.size());
+auto create_plan(const vector<int>& gain_loss_history) -> FinancialPlan {
+  return find_max_period(gain_loss_history, 0, gain_loss_history.size() - 1);
 }
 
 }  // namespace maxprofit

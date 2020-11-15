@@ -10,7 +10,14 @@ auto main(int argc, char** argv) -> int {
   vector<int> history;
   string header = "Max Profit Demo";
   string usage = "./maxprofit-demo [numbers ...]";
-  string description = "Finds best index to buy and sell given an array of integer 'prices'";
+  string description =
+    "Imagines max-subarray problem as a max profit problem and "
+    "finds best index to buy and sell given an array of integer daily 'stock price' changes";
+
+  if (argc == 1) {
+    print_usage(header, usage, description);
+    exit(0);
+  }
 
   try {
     for (int i = 1; i < argc; ++i) {
@@ -25,7 +32,7 @@ auto main(int argc, char** argv) -> int {
 
   maxprofit::FinancialPlan plan = maxprofit::create_plan(history);
 
-  cout << "But at index: " << plan.buy_idx << endl;
-  cout << "Sell at index: " << plan.sell_idx << endl;
+  cout << "Buy at BOD: " << plan.buy_idx << endl;
+  cout << "Sell at EOD: " << plan.sell_idx << endl;
   cout << "Profit: " << plan.profit << endl;
 }
