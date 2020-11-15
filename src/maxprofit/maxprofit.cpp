@@ -1,8 +1,8 @@
-#include <iostream>
-#include <vector>
-#include <tuple>
-#include <limits>
 #include "maxprofit.hpp"
+#include <iostream>
+#include <limits>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -10,7 +10,10 @@ using namespace std;
 namespace maxprofit {
 namespace {
 
-auto find_max_crossing_period(const vector<int>& price_history, size_t start_idx, size_t mid_idx, size_t end_idx) -> FinancialPlan {
+auto find_max_crossing_period(const vector<int> &price_history,
+                              size_t start_idx,
+                              size_t mid_idx,
+                              size_t end_idx) -> FinancialPlan {
   long neg_inf = numeric_limits<long>::min();
   long left_sum = neg_inf;
   long right_sum = neg_inf;
@@ -41,26 +44,33 @@ auto find_max_crossing_period(const vector<int>& price_history, size_t start_idx
     both_sum += right_sum;
   }
 
-  FinancialPlan plan {left_idx, right_idx, both_sum};
+  FinancialPlan plan{left_idx, right_idx, both_sum};
   return plan;
 }
 
-auto find_max_period(const vector<int>& price_history, size_t start_idx, size_t end_idx) -> FinancialPlan {
+auto find_max_period(const vector<int> &price_history,
+                     size_t start_idx,
+                     size_t end_idx) -> FinancialPlan {
   if (price_history.empty()) {
-    FinancialPlan plan {0, 0, 0};
+    FinancialPlan plan{0, 0, 0};
     return plan;
   } else if (start_idx == end_idx) {
-    FinancialPlan plan {start_idx, end_idx, price_history.at(start_idx)};
+    FinancialPlan plan{start_idx, end_idx, price_history.at(start_idx)};
     return plan;
   } else {
     auto mid_idx = (start_idx + end_idx) / 2;
-    FinancialPlan left_plan = find_max_period(price_history, start_idx, mid_idx);
-    FinancialPlan right_plan = find_max_period(price_history, mid_idx + 1, end_idx);
-    FinancialPlan cross_plan = find_max_crossing_period(price_history, start_idx, mid_idx, end_idx);
+    FinancialPlan left_plan =
+        find_max_period(price_history, start_idx, mid_idx);
+    FinancialPlan right_plan =
+        find_max_period(price_history, mid_idx + 1, end_idx);
+    FinancialPlan cross_plan =
+        find_max_crossing_period(price_history, start_idx, mid_idx, end_idx);
 
-    if (left_plan.profit >= right_plan.profit && left_plan.profit >= cross_plan.profit) {
+    if (left_plan.profit >= right_plan.profit &&
+        left_plan.profit >= cross_plan.profit) {
       return left_plan;
-    } else if (right_plan.profit >= left_plan.profit && right_plan.profit >= cross_plan.profit) {
+    } else if (right_plan.profit >= left_plan.profit &&
+               right_plan.profit >= cross_plan.profit) {
       return right_plan;
     } else {
       return cross_plan;
@@ -68,10 +78,10 @@ auto find_max_period(const vector<int>& price_history, size_t start_idx, size_t 
   }
 }
 
-}  // namespace
+} // namespace
 
-auto create_plan(const vector<int>& gain_loss_history) -> FinancialPlan {
+auto create_plan(const vector<int> &gain_loss_history) -> FinancialPlan {
   return find_max_period(gain_loss_history, 0, gain_loss_history.size() - 1);
 }
 
-}  // namespace maxprofit
+} // namespace maxprofit

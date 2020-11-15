@@ -3,15 +3,17 @@
 
 using namespace std;
 
-auto Sorter::merge_sort(const vector<int>& source) -> vector<int> {
+auto Sorter::merge_sort(const vector<int> &source) -> vector<int> {
   vector<int> result(source);
-  if (!result.empty()) { 
+  if (!result.empty()) {
     merge_sort_helper(&result, 0, result.size() - 1);
   }
   return result;
 }
 
-void Sorter::merge_sort_helper(vector<int>* vec_ptr, size_t low_idx, size_t high_idx) {
+void Sorter::merge_sort_helper(vector<int> *vec_ptr,
+                               size_t low_idx,
+                               size_t high_idx) {
   if (low_idx < high_idx) {
     auto mid_idx = (low_idx + high_idx) / 2;
     merge_sort_helper(vec_ptr, low_idx, mid_idx);
@@ -20,7 +22,10 @@ void Sorter::merge_sort_helper(vector<int>* vec_ptr, size_t low_idx, size_t high
   }
 }
 
-void Sorter::merge(vector<int>* vec_ptr, size_t low_idx, size_t mid_idx, size_t high_idx) {
+void Sorter::merge(vector<int> *vec_ptr,
+                   size_t low_idx,
+                   size_t mid_idx,
+                   size_t high_idx) {
   auto len_left = mid_idx - low_idx + 1;
   auto len_right = high_idx - mid_idx;
 
