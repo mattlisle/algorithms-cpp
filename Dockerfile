@@ -5,7 +5,8 @@ RUN apt-get update && apt-get install -y \
   build-essential \
   g++ \
   cmake \
-  clang-tidy-9
+  clang-tidy-9 \
+  clang-format-9
 
 WORKDIR /usr/src
 COPY . .
