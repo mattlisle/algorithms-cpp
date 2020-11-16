@@ -31,7 +31,7 @@ auto main(int argc, char **argv) -> int {
   cout << "Input: ";
   print_vector(unsorted);
 
-  auto result = Sorter::merge_sort(unsorted);
+  auto result = sort::merge_sort(unsorted);
 
   cout << "Output: ";
   print_vector(result);

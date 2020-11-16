@@ -49,7 +49,7 @@ public:
   };
 
   static void test_sorting_of(const vector<int> &vec) {
-    auto result = Sorter::merge_sort(vec);
+    auto result = sort::merge_sort(vec);
 
     stringstream message;
     message << "sorting failed on this subsequence: ";
