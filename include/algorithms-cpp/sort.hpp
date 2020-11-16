@@ -14,7 +14,7 @@ namespace sort {
  * @param source elements to sort
  * @return std::vector<int> sorted elements in vector form
  */
-auto merge_sort(const std::vector<int> &source) -> std::vector<int>;
+auto merge_sort(const std::vector<int>& source) -> std::vector<int>;
 
 } // namespace sort
 

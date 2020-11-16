@@ -25,8 +25,8 @@ public:
 
   };
 
-  static void test_planning(const vector<int> &vec,
-                            const maxprofit::FinancialPlan &expected_plan) {
+  static void test_planning(const vector<int>& vec,
+                            const maxprofit::FinancialPlan& expected_plan) {
     maxprofit::FinancialPlan plan = maxprofit::create_plan(vec);
     ASSERT_EQ(plan.buy_idx, expected_plan.buy_idx);
     ASSERT_EQ(plan.sell_idx, expected_plan.sell_idx);

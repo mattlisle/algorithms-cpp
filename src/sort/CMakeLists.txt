@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.2)
 project(sort)
 
-set(SOURCE_FILES sort.cpp)
+set(SOURCE_FILES mergesort.cpp heapsort.cpp)
 
 add_subdirectory(demo)
 

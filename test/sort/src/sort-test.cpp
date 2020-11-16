@@ -7,8 +7,8 @@ using namespace std;
 
 class SortTest : public ::testing::Test {
 private:
-  static void test_contents_match(const vector<int> &source,
-                                  const vector<int> &result) {
+  static void test_contents_match(const vector<int>& source,
+                                  const vector<int>& result) {
     ASSERT_EQ(result.size(), source.size());
     map<int, set<int>> values_to_idxs;
     for (size_t i = 0; i < source.size(); ++i) {
@@ -20,7 +20,7 @@ private:
       idxs.insert(i);
       values_to_idxs[value] = idxs;
     }
-    for (const auto &elem : result) {
+    for (const auto& elem : result) {
       if (values_to_idxs.find(elem) != values_to_idxs.end()) {
         auto idxs = values_to_idxs[elem];
         ASSERT_FALSE(idxs.empty());
@@ -48,13 +48,13 @@ public:
 
   };
 
-  static void test_sorting_of(const vector<int> &vec) {
+  static void test_sorting_of(const vector<int>& vec) {
     auto result = sort::merge_sort(vec);
 
     stringstream message;
     message << "sorting failed on this subsequence: ";
     int prev = numeric_limits<int>::min();
-    for (const auto &elem : result) {
+    for (const auto& elem : result) {
       message << elem << " ";
       if (prev > elem) {
         FAIL() << message.str();

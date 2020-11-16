@@ -6,7 +6,7 @@
 using namespace std;
 using namespace util;
 
-auto main(int argc, char **argv) -> int {
+auto main(int argc, char** argv) -> int {
   vector<int> history;
   string header = "Max Profit Demo";
   string usage = "./maxprofit-demo [numbers ...]";
@@ -25,7 +25,7 @@ auto main(int argc, char **argv) -> int {
       int int_arg = stoi(argv[i], nullptr, 0); // NOLINT
       history.push_back(int_arg);
     }
-  } catch (const exception &ex) {
+  } catch (const exception& ex) {
     cout << "Invalid argument provided, see usage below:" << endl;
     print_usage(header, usage, description);
     exit(1);

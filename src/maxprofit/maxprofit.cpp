@@ -10,7 +10,7 @@ using namespace std;
 namespace maxprofit {
 namespace {
 
-auto find_max_crossing_period(const vector<int> &price_history,
+auto find_max_crossing_period(const vector<int>& price_history,
                               size_t start_idx,
                               size_t mid_idx,
                               size_t end_idx) -> FinancialPlan {
@@ -48,7 +48,7 @@ auto find_max_crossing_period(const vector<int> &price_history,
   return plan;
 }
 
-auto find_max_period(const vector<int> &price_history,
+auto find_max_period(const vector<int>& price_history,
                      size_t start_idx,
                      size_t end_idx) -> FinancialPlan {
   if (price_history.empty()) {
@@ -80,7 +80,7 @@ auto find_max_period(const vector<int> &price_history,
 
 } // namespace
 
-auto create_plan(const vector<int> &gain_loss_history) -> FinancialPlan {
+auto create_plan(const vector<int>& gain_loss_history) -> FinancialPlan {
   return find_max_period(gain_loss_history, 0, gain_loss_history.size() - 1);
 }
 
