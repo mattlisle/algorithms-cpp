@@ -49,12 +49,10 @@ void merge_sort_helper(vector<int>* vec_ptr, size_t low_idx, size_t high_idx) {
 }
 } // namespace
 
-auto merge_sort(const vector<int>& source) -> vector<int> {
-  vector<int> result(source);
-  if (!result.empty()) {
-    merge_sort_helper(&result, 0, result.size() - 1);
+void merge_sort(vector<int>* source) {
+  if (source->size() > 1) {
+    merge_sort_helper(source, 0, source->size() - 1);
   }
-  return result;
 }
 
 } // namespace sort

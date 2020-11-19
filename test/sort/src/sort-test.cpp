@@ -1,4 +1,5 @@
 #include "gtest/gtest.h"
+#include <functional>
 #include <limits>
 #include <sort.hpp>
 #include <string>
@@ -34,7 +35,7 @@ private:
 public:
   const vector<int> zero_element{};
   const vector<int> one_element{1};
-  const vector<int> positive_elements{1, 5, 2, 9, 3};
+  const vector<int> positive_elements{1, 5, 2, 16, 9, 3, 14, 10, 8, 7};
   const vector<int> negative_elements{-1, -3, -2, -8, -4};
   const vector<int> mixed_elements{10, -20, -20, 40, -34, -100, 2};
   const vector<int> large_elements{
@@ -48,8 +49,10 @@ public:
 
   };
 
-  static void test_sorting_of(const vector<int>& vec) {
-    auto result = sort::merge_sort(vec);
+  static void test_sorting_of(const vector<int>& vec,
+                              const function<void(vector<int>*)>& sorter) {
+    auto result = vec;
+    sorter(&result);
 
     stringstream message;
     message << "sorting failed on this subsequence: ";
@@ -65,25 +68,49 @@ public:
 };
 
 TEST_F(SortTest, merge_sort_zero_elements) { // NOLINT
-  test_sorting_of(zero_element);
+  test_sorting_of(zero_element, sort::merge_sort);
 }
 
 TEST_F(SortTest, merge_sort_one_element) { // NOLINT
-  test_sorting_of(one_element);
+  test_sorting_of(one_element, sort::merge_sort);
 }
 
 TEST_F(SortTest, merge_sort_positive_elements) { // NOLINT
-  test_sorting_of(positive_elements);
+  test_sorting_of(positive_elements, sort::merge_sort);
 }
 
 TEST_F(SortTest, merge_sort_negative_elements) { // NOLINT
-  test_sorting_of(negative_elements);
+  test_sorting_of(negative_elements, sort::merge_sort);
 }
 
 TEST_F(SortTest, merge_sort_integer_elements) { // NOLINT
-  test_sorting_of(mixed_elements);
+  test_sorting_of(mixed_elements, sort::merge_sort);
 }
 
 TEST_F(SortTest, merge_sort_large_elements) { // NOLINT
-  test_sorting_of(large_elements);
+  test_sorting_of(large_elements, sort::merge_sort);
+}
+
+TEST_F(SortTest, heap_sort_zero_elements) { // NOLINT
+  test_sorting_of(zero_element, sort::heap_sort);
+}
+
+TEST_F(SortTest, heap_sort_one_element) { // NOLINT
+  test_sorting_of(one_element, sort::heap_sort);
+}
+
+TEST_F(SortTest, heap_sort_positive_elements) { // NOLINT
+  test_sorting_of(positive_elements, sort::heap_sort);
+}
+
+TEST_F(SortTest, heap_sort_negative_elements) { // NOLINT
+  test_sorting_of(negative_elements, sort::heap_sort);
+}
+
+TEST_F(SortTest, heap_sort_integer_elements) { // NOLINT
+  test_sorting_of(mixed_elements, sort::heap_sort);
+}
+
+TEST_F(SortTest, heap_sort_large_elements) { // NOLINT
+  test_sorting_of(large_elements, sort::heap_sort);
 }

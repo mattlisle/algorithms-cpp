@@ -15,12 +15,12 @@ auto main(int argc, char** argv) -> int {
     exit(0);
   }
 
-  vector<int> unsorted;
+  vector<int> source;
 
   try {
     for (int i = 1; i < argc; ++i) {
       int int_arg = stoi(argv[i], nullptr, 0); // NOLINT
-      unsorted.push_back(int_arg);
+      source.push_back(int_arg);
     }
   } catch (const exception& ex) {
     cout << "Invalid argument provided, see usage below:" << endl;
@@ -29,12 +29,12 @@ auto main(int argc, char** argv) -> int {
   }
 
   cout << "Input: ";
-  print_vector(unsorted);
+  print_vector(source);
 
-  auto result = sort::merge_sort(unsorted);
+  sort::merge_sort(&source);
 
   cout << "Output: ";
-  print_vector(result);
+  print_vector(source);
 
   return 0;
 }

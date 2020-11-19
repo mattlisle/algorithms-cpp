@@ -9,12 +9,19 @@
 namespace sort {
 
 /**
- * @brief Sort elements using merge sort
+ * @brief Sort elements using merge sort (not in-place)
  *
  * @param source elements to sort
  * @return std::vector<int> sorted elements in vector form
  */
-auto merge_sort(const std::vector<int>& source) -> std::vector<int>;
+void merge_sort(std::vector<int>* source);
+
+/**
+ * @brief Sort elements using heap sort (in-place)
+ *
+ * @param source_ptr elements to sort
+ */
+void heap_sort(std::vector<int>* source);
 
 } // namespace sort
 
