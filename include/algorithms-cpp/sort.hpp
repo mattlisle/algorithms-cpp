@@ -25,7 +25,7 @@ void heap_sort(std::vector<int>* source);
 
 /**
  * @brief Sort elements using quick sort
- * 
+ *
  * @param source elements to sort
  */
 void quick_sort(std::vector<int>* source);
