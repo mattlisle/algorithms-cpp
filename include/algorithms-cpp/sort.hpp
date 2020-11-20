@@ -9,7 +9,7 @@
 namespace sort {
 
 /**
- * @brief Sort elements using merge sort (not in-place)
+ * @brief Sort elements using merge sort
  *
  * @param source elements to sort
  * @return std::vector<int> sorted elements in vector form
@@ -17,11 +17,18 @@ namespace sort {
 void merge_sort(std::vector<int>* source);
 
 /**
- * @brief Sort elements using heap sort (in-place)
+ * @brief Sort elements using heap sort
  *
- * @param source_ptr elements to sort
+ * @param source elements to sort
  */
 void heap_sort(std::vector<int>* source);
+
+/**
+ * @brief Sort elements using quick sort
+ * 
+ * @param source elements to sort
+ */
+void quick_sort(std::vector<int>* source);
 
 } // namespace sort
 

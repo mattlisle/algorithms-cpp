@@ -114,3 +114,27 @@ TEST_F(SortTest, heap_sort_integer_elements) { // NOLINT
 TEST_F(SortTest, heap_sort_large_elements) { // NOLINT
   test_sorting_of(large_elements, sort::heap_sort);
 }
+
+TEST_F(SortTest, quick_sort_zero_elements) { // NOLINT
+  test_sorting_of(zero_element, sort::quick_sort);
+}
+
+TEST_F(SortTest, quick_sort_one_element) { // NOLINT
+  test_sorting_of(one_element, sort::quick_sort);
+}
+
+TEST_F(SortTest, quick_sort_positive_elements) { // NOLINT
+  test_sorting_of(positive_elements, sort::quick_sort);
+}
+
+TEST_F(SortTest, quick_sort_negative_elements) { // NOLINT
+  test_sorting_of(negative_elements, sort::quick_sort);
+}
+
+TEST_F(SortTest, quick_sort_integer_elements) { // NOLINT
+  test_sorting_of(mixed_elements, sort::quick_sort);
+}
+
+TEST_F(SortTest, quick_sort_large_elements) { // NOLINT
+  test_sorting_of(large_elements, sort::quick_sort);
+}
