@@ -2,3 +2,4 @@
 */
 !.gitignore
 !algorithms-cpp/
+!algorithms-cpp/*
