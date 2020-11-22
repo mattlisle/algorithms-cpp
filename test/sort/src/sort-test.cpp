@@ -14,7 +14,7 @@ private:
     map<int, set<int>> values_to_idxs;
     for (size_t i = 0; i < source.size(); ++i) {
       auto value = source[i];
-      set<int> idxs{};
+      set<int> idxs {};
       if (values_to_idxs.find(value) != values_to_idxs.end()) {
         idxs = values_to_idxs[value];
       }
@@ -33,19 +33,19 @@ private:
   }
 
 public:
-  const vector<int> zero_element{};
-  const vector<int> one_element{1};
-  const vector<int> positive_elements{1, 5, 2, 16, 9, 3, 14, 10, 8, 7};
-  const vector<int> negative_elements{-1, -3, -2, -8, -4};
-  const vector<int> mixed_elements{10, -20, -20, 40, -34, -100, 2};
-  const vector<int> large_elements{
+  const vector<int> zero_element {};
+  const vector<int> one_element {1};
+  const vector<int> positive_elements {1, 5, 2, 16, 9, 3, 14, 10, 8, 7};
+  const vector<int> negative_elements {-1, -3, -2, -8, -4};
+  const vector<int> mixed_elements {10, -20, -20, 40, -34, -100, 2};
+  const vector<int> large_elements {
       numeric_limits<int>::max(), 0, numeric_limits<int>::min()};
 
-  void SetUp() override{
+  void SetUp() override {
 
   };
 
-  void TearDown() override{
+  void TearDown() override {
 
   };
 

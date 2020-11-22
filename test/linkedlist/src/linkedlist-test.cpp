@@ -7,17 +7,17 @@
 
 class LinkedListTest : public ::testing::Test {
 public:
-  void SetUp() override{
+  void SetUp() override {
 
   };
 
-  void TearDown() override{
+  void TearDown() override {
 
   };
 };
 
 TEST_F(LinkedListTest, sandbox) { // NOLINT
-  linkedlist::Seq<int> seq{};
+  linkedlist::Seq<int> seq {};
   seq.prepend(1);
   std::cout << seq.head();
 }

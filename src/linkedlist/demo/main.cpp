@@ -17,7 +17,7 @@ auto main(int argc, char** argv) -> int {
     exit(0);
   }
 
-  linkedlist::Seq<int> seq{};
+  linkedlist::Seq<int> seq {};
 
   try {
     for (int i = 1; i < argc; ++i) {
@@ -32,7 +32,7 @@ auto main(int argc, char** argv) -> int {
 
   linkedlist::Seq<int> seq_copy(seq);
 
-  linkedlist::Seq<int> other_seq {2, 4, 6};
+  linkedlist::Seq<int> other_seq {0, 1, 2};
 
   cout << other_seq << endl;
 

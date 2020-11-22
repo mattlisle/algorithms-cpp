@@ -4,9 +4,9 @@
 #include <algorithm>
 #include <exception>
 #include <forward_list>
-#include <vector>
 #include <iostream>
 #include <memory>
+#include <vector>
 
 namespace linkedlist {
 
@@ -21,9 +21,9 @@ private:
   struct Node {
     T elem;
     std::unique_ptr<Node> next;
-    explicit Node(T elem) : elem{elem}, next{nullptr} {}
+    explicit Node(T elem) : elem {elem}, next {nullptr} {}
   };
-  
+
   std::unique_ptr<Node> first;
 
   std::unique_ptr<Node> copy_nodes(Node* node);
@@ -42,8 +42,8 @@ public:
   void prepend(const T& elem);
 };
 
-template<typename T>
-std::unique_ptr<typename Seq<T>::Node> Seq<T>::copy_nodes(Node* node)  {
+template <typename T>
+std::unique_ptr<typename Seq<T>::Node> Seq<T>::copy_nodes(Node* node) {
   if (node->next == nullptr) {
     auto node_copy {std::make_unique<Node>(node->elem)};
     return node_copy;
@@ -54,8 +54,9 @@ std::unique_ptr<typename Seq<T>::Node> Seq<T>::copy_nodes(Node* node)  {
   }
 };
 
-template<typename T>
-std::unique_ptr<typename Seq<T>::Node> Seq<T>::create_nodes(const T* begin, const T* end) {
+template <typename T>
+std::unique_ptr<typename Seq<T>::Node> Seq<T>::create_nodes(const T* begin,
+                                                            const T* end) {
   if (begin == end) {
     return nullptr;
   } else {
@@ -65,13 +66,11 @@ std::unique_ptr<typename Seq<T>::Node> Seq<T>::create_nodes(const T* begin, cons
   }
 }
 
-template<typename T>
-Seq<T>::Seq(std::initializer_list<T> elems) {
+template <typename T> Seq<T>::Seq(std::initializer_list<T> elems) {
   first = create_nodes(elems.begin(), elems.end());
 }
 
-template<typename T>
-Seq<T>::Seq(Seq& seq) {
+template <typename T> Seq<T>::Seq(Seq& seq) {
   while (first != nullptr) {
     first = std::move(first->next);
   }
@@ -79,33 +78,28 @@ Seq<T>::Seq(Seq& seq) {
   first = Seq<T>::copy_nodes(node_to_copy);
 }
 
-template<typename T>
-Seq<T>::Seq(Seq&& seq) noexcept {
+template <typename T> Seq<T>::Seq(Seq&& seq) noexcept {
   first = std::move(seq.first);
 }
 
-template<typename T>
-Seq<T>& Seq<T>::operator=(const Seq<T>& seq) {
+template <typename T> Seq<T>& Seq<T>::operator=(const Seq<T>& seq) {
   Seq<T> tmp(seq);
   std::swap(tmp);
   return *this;
 }
 
-template<typename T>
-Seq<T>& Seq<T>::operator=(Seq&& seq) noexcept {
+template <typename T> Seq<T>& Seq<T>::operator=(Seq&& seq) noexcept {
   std::swap(seq);
   return *this;
 }
 
-template<typename T>
-Seq<T>::~Seq() noexcept {
+template <typename T> Seq<T>::~Seq() noexcept {
   while (first != nullptr) {
     first = std::move(first->next);
   }
 }
 
-template<typename T>
-T Seq<T>::head() {
+template <typename T> T Seq<T>::head() {
   if (first == nullptr) {
     throw HeadOfEmptyCollection();
   } else {
@@ -113,9 +107,8 @@ T Seq<T>::head() {
   }
 }
 
-template<typename T>
-void Seq<T>::prepend(const T& elem) {
-  auto node{std::make_unique<Node>(elem)};
+template <typename T> void Seq<T>::prepend(const T& elem) {
+  auto node {std::make_unique<Node>(elem)};
   node->next = std::move(first);
   this->first = std::move(node);
 }

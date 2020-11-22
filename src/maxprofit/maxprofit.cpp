@@ -44,7 +44,7 @@ auto find_max_crossing_period(const vector<int>& price_history,
     both_sum += right_sum;
   }
 
-  FinancialPlan plan{left_idx, right_idx, both_sum};
+  FinancialPlan plan {left_idx, right_idx, both_sum};
   return plan;
 }
 
@@ -52,10 +52,10 @@ auto find_max_period(const vector<int>& price_history,
                      size_t start_idx,
                      size_t end_idx) -> FinancialPlan {
   if (price_history.empty()) {
-    FinancialPlan plan{0, 0, 0};
+    FinancialPlan plan {0, 0, 0};
     return plan;
   } else if (start_idx == end_idx) {
-    FinancialPlan plan{start_idx, end_idx, price_history.at(start_idx)};
+    FinancialPlan plan {start_idx, end_idx, price_history.at(start_idx)};
     return plan;
   } else {
     auto mid_idx = (start_idx + end_idx) / 2;
