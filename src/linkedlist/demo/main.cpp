@@ -1,6 +1,7 @@
 
 #include "linkedlist.hpp"
 #include "util.hpp"
+#include <optional>
 #include <string>
 
 using namespace std;
@@ -17,7 +18,7 @@ auto main(int argc, char** argv) -> int {
     exit(0);
   }
 
-  linkedlist::Seq<int> seq {};
+  linkedlist::LinkedList<int> seq {};
 
   try {
     for (int i = 1; i < argc; ++i) {
@@ -30,11 +31,13 @@ auto main(int argc, char** argv) -> int {
     exit(1);
   }
 
-  linkedlist::Seq<int> seq_copy(seq);
+  linkedlist::LinkedList<int> seq_copy(seq);
 
-  linkedlist::Seq<int> other_seq {0, 1, 2};
+  linkedlist::LinkedList<int> other_seq {0, 1, 2};
 
-  cout << other_seq << endl;
+  optional<int> maybe_elem = other_seq.find(3);
+
+  cout << maybe_elem.value() << endl;
 
   return 0;
 }

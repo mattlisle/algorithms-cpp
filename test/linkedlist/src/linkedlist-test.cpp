@@ -17,7 +17,7 @@ public:
 };
 
 TEST_F(LinkedListTest, sandbox) { // NOLINT
-  linkedlist::Seq<int> seq {};
+  linkedlist::LinkedList<int> seq {};
   seq.prepend(1);
   std::cout << seq.head();
 }
