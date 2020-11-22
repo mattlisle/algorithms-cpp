@@ -10,7 +10,8 @@ namespace util {
 /// Prints a vector's contents to stdout
 void print_vector(const std::vector<int>& vec);
 
-template <typename T> void print_vector(const std::vector<T>& vec) {
+template <typename T>
+void print_vector(const std::vector<T>& vec) {
   for (auto elem : vec) {
     std::cout << elem << " ";
   }

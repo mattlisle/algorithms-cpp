@@ -35,7 +35,7 @@ auto main(int argc, char** argv) -> int {
 
   linkedlist::LinkedList<int> other_seq {0, 1, 2};
 
-  optional<int> maybe_elem = other_seq.find(3);
+  optional<int> maybe_elem = other_seq.find(1);
 
   cout << maybe_elem.value() << endl;
 
