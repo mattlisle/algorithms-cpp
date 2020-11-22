@@ -24,14 +24,15 @@ private:
     explicit Node(T elem) : elem {elem}, next {nullptr} {}
   };
 
-  std::unique_ptr<Node> first;
+  std::unique_ptr<Node> first = nullptr;
+  size_t size_ = 0;
 
   std::unique_ptr<Node> copy_nodes(Node* node);
   std::unique_ptr<Node> create_nodes(const T* begin, const T* end);
   friend std::ostream& operator<<<>(std::ostream& strm, const LinkedList& seq);
 
 public:
-  LinkedList() noexcept { first = nullptr; }
+  LinkedList() noexcept = default;
   LinkedList(std::initializer_list<T> elems);
   LinkedList(LinkedList& seq);
   LinkedList(LinkedList&& seq) noexcept;
@@ -42,6 +43,7 @@ public:
   std::optional<T> head_option();
   std::optional<T> find(const T& elem);
   void prepend(const T& elem);
+  void drop(size_t n) noexcept;
 };
 
 template <typename T>
@@ -143,6 +145,19 @@ void LinkedList<T>::prepend(const T& elem) {
   auto node {std::make_unique<Node>(elem)};
   node->next = std::move(first);
   this->first = std::move(node);
+  ++size_;
+}
+
+template <typename T>
+void LinkedList<T>::drop(size_t n) noexcept {
+  for (size_t i = 0; i < n ; ++i) {
+    if (first == nullptr) {
+      break;
+    } else {
+      first = std::move(first->next);
+      --size_;
+    }
+  }
 }
 
 template <typename T>
@@ -154,11 +169,10 @@ std::ostream& operator<<(std::ostream& strm,
     strm << node->elem;
     if (node->next != nullptr) {
       strm << ", ";
-    } else {
-      strm << ")";
     }
     node = node->next.get();
   }
+  strm << ')';
   return strm;
 }
 } // namespace linkedlist

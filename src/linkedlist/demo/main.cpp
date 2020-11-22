@@ -37,7 +37,12 @@ auto main(int argc, char** argv) -> int {
 
   optional<int> maybe_elem = other_seq.find(1);
 
-  cout << maybe_elem.value() << endl;
+  int h = other_seq.head();
+  h = -1;
+
+  other_seq.drop(1);
+
+  cout << other_seq << endl;
 
   return 0;
 }
