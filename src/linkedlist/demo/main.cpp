@@ -30,7 +30,11 @@ auto main(int argc, char** argv) -> int {
     exit(1);
   }
 
-  cout << seq << endl;
+  linkedlist::Seq<int> seq_copy(seq);
+
+  linkedlist::Seq<int> other_seq {2, 4, 6};
+
+  cout << other_seq << endl;
 
   return 0;
 }
