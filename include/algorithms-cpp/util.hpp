@@ -1,7 +1,9 @@
 #ifndef CMAKE_UTIL_H
 #define CMAKE_UTIL_H
 
+#include <functional>
 #include <iostream>
+#include <optional>
 #include <string>
 #include <vector>
 
