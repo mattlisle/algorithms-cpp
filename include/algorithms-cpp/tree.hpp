@@ -42,14 +42,60 @@ private:
   friend std::ostream& operator<<(std::ostream& stream, const BinaryTree& tr);
 
 public:
+  BinaryTree(std::initializer_list<std::pair<Key, Val>> elems);
+
+  /**
+   * @brief Get the value associated with a key, if it exists
+   * 
+   * @param key associated with the desired value
+   * @return std::optional<Val> the value associated with the provided key
+   */
   [[nodiscard]] std::optional<Val> get(Key key) const;
+
+  /**
+   * @brief Get the value associated with the next-largest key in the tree, if it exists
+   * 
+   * @param key reference element
+   * @return std::optional<Val> value associated with the next-largest key
+   */
   [[nodiscard]] std::optional<Val> successor(Key key) const;
+
+  /**
+   * @brief Get the value associated with the minimum key
+   */
   [[nodiscard]] Val min() const;
+
+  /**
+   * @brief Get the value associated with the maximum key
+   */
   [[nodiscard]] Val max() const;
+
+  /**
+   * @brief Get the number of nodes in the tree
+   */
   [[nodiscard]] size_t size() const;
+
+  /**
+   * @brief Add the k-v pair to the tree, overwrite the value of the associated key
+   *        if it's already in the tree 
+   */
   void insert(Key key, Val val);
+
+  /**
+   * @brief Remove a k-v pair from the tree 
+   */
   void drop(Key key);
+
+  /**
+   * @brief Return true if the tree is empty
+   */
   [[nodiscard]] bool empty() const { return root == nullptr; }
+
+  /**
+   * @brief Iterate over the tree and execute some function on each k-v pair
+   * 
+   * @param fn function to apply to each k-v pair, but it cannot modify any key/value
+   */
   void foreach(const std::function<void(Key, Val)>& fn) const;
 };
 

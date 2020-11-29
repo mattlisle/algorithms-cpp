@@ -24,7 +24,6 @@ int main(int argc, char** argv) {
     for (int i = 1; i < argc; ++i) {
       int int_arg = stoi(argv[i], nullptr, 0); // NOLINT
       bin_tree.insert(int_arg, int_arg);
-      // cout << bin_tree.get(int_arg).value() << endl;
     }
   } catch (const exception& ex) {
     cout << "Invalid argument provided, see usage below:" << endl;
@@ -33,7 +32,6 @@ int main(int argc, char** argv) {
   }
 
   cout << bin_tree << endl;
-  // cout << bin_tree.successor(3).value() << endl;
 
   return 0;
 }
