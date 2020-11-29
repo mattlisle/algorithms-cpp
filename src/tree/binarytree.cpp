@@ -1,14 +1,15 @@
 #include "tree.hpp"
 #include "util.hpp"
-#include <iostream>
 #include <cmath>
+#include <iostream>
 #include <map>
 #include <memory>
 #include <optional>
 
 namespace tree {
 
-void BinaryTree::transplant(const std::shared_ptr<BinaryTree::Node>& prev, std::shared_ptr<BinaryTree::Node> next) {
+void BinaryTree::transplant(const std::shared_ptr<BinaryTree::Node>& prev,
+                            std::shared_ptr<BinaryTree::Node> next) {
   if (next != nullptr) {
     next->parent = std::move(prev->parent);
   }
@@ -21,7 +22,8 @@ void BinaryTree::transplant(const std::shared_ptr<BinaryTree::Node>& prev, std::
   }
 }
 
-[[nodiscard]] std::optional<std::shared_ptr<BinaryTree::Node>> BinaryTree::get_node(Key key) const {
+[[nodiscard]] std::optional<std::shared_ptr<BinaryTree::Node>>
+BinaryTree::get_node(Key key) const {
   auto node = root;
   while (node != nullptr && node->key != key) {
     node = key < node->key ? node->left : node->right;
@@ -33,7 +35,8 @@ void BinaryTree::transplant(const std::shared_ptr<BinaryTree::Node>& prev, std::
   }
 }
 
-[[nodiscard]] std::shared_ptr<BinaryTree::Node> BinaryTree::min(const std::shared_ptr<BinaryTree::Node>& start) const {
+[[nodiscard]] std::shared_ptr<BinaryTree::Node>
+BinaryTree::min(const std::shared_ptr<BinaryTree::Node>& start) {
   if (start == nullptr) {
     throw std::exception();
   }
@@ -44,7 +47,10 @@ void BinaryTree::transplant(const std::shared_ptr<BinaryTree::Node>& prev, std::
   return node;
 }
 
-void BinaryTree::mappify(std::shared_ptr<std::map<size_t, BinaryTree::Node>> nodes, std::shared_ptr<BinaryTree::Node> node, size_t&& idx) const { // NOLINT
+void BinaryTree::mappify(
+    std::shared_ptr<std::map<size_t, BinaryTree::Node>> nodes, // NOLINT
+    std::shared_ptr<BinaryTree::Node> node,                    // NOLINT
+    size_t&& idx) const {
   if (node != nullptr) {
     (*nodes)[idx] = *node;
     mappify(nodes, node->left, 2 * idx + 1);
@@ -53,7 +59,7 @@ void BinaryTree::mappify(std::shared_ptr<std::map<size_t, BinaryTree::Node>> nod
 }
 
 BinaryTree::BinaryTree(std::initializer_list<std::pair<Key, Val>> elems) {
-  for (const auto& pair: elems) {
+  for (const auto& pair : elems) {
     insert(pair.first, pair.second);
   }
 }
@@ -87,9 +93,7 @@ BinaryTree::BinaryTree(std::initializer_list<std::pair<Key, Val>> elems) {
   }
 }
 
-[[nodiscard]] Val BinaryTree::min() const {
-  return min(root)->value;
-}
+[[nodiscard]] Val BinaryTree::min() const { return min(root)->value; }
 
 [[nodiscard]] Val BinaryTree::max() const {
   auto node = root;
@@ -148,22 +152,28 @@ void BinaryTree::drop(Key key) {
   }
 }
 
-void BinaryTree::foreach(const std::function<void(Key, Val)>& fn, const std::shared_ptr<BinaryTree::Node>& node) const {
+void BinaryTree::foreach (const std::function<void(Key, Val)>& fn,
+                          const std::shared_ptr<BinaryTree::Node>& node) const {
   if (node != nullptr) {
     fn(node->key, node->value);
-    foreach(fn, node->left);
-    foreach(fn, node->right);
+    foreach (fn, node->left)
+      ;
+    foreach (fn, node->right)
+      ;
   }
 }
 
-void BinaryTree::foreach(const std::function<void(Key, Val)>& fn) const {
-  foreach(fn, root);
+void BinaryTree::foreach (const std::function<void(Key, Val)>& fn) const {
+  foreach (fn, root)
+    ;
 }
 
 [[nodiscard]] size_t BinaryTree::size() const {
   size_t result {};
-  auto fn = [&result](Key k __attribute__((__unused__)), Val v __attribute__((__unused__))) {result++;};
-  foreach(fn);
+  auto fn = [&result](Key k __attribute__((__unused__)),
+                      Val v __attribute__((__unused__))) { result++; };
+  foreach (fn)
+    ;
   return result;
 }
 
@@ -174,7 +184,7 @@ std::ostream& operator<<(std::ostream& stream, const BinaryTree& tr) {
     auto max_idx = static_cast<double>(node_map->rbegin()->first);
     auto height = floor(log2(max_idx + 1));
     size_t checkpoint = 1;
-    auto append_elem = [&stream,&node_map](size_t idx) {
+    auto append_elem = [&stream, &node_map](size_t idx) {
       if (node_map->find(idx) != node_map->end()) {
         stream << node_map->at(idx).key;
       } else {

@@ -17,10 +17,10 @@ using Val = int;
 
 /**
  * @brief Basic implementation of a binary search tree
- * 
+ *
  * Note: LinkedList was the mechanism I used to learn templates, so
  * I won't use them here to make this simpler.
- * 
+ *
  */
 class BinaryTree {
 private:
@@ -30,15 +30,21 @@ private:
     std::shared_ptr<Node> parent;
     std::shared_ptr<Node> left;
     std::shared_ptr<Node> right;
-    explicit Node(const Key& key, const Val& value) : key {key}, value {value} {}
+    explicit Node(const Key& key, const Val& value)
+        : key {key}, value {value} {}
     Node() = default;
   };
-  void transplant(const std::shared_ptr<Node>& prev, std::shared_ptr<Node> next);
+  void transplant(const std::shared_ptr<Node>& prev,
+                  std::shared_ptr<Node> next);
   [[nodiscard]] std::optional<std::shared_ptr<Node>> get_node(Key key) const;
   std::shared_ptr<Node> root;
-  [[nodiscard]] std::shared_ptr<Node> min(const std::shared_ptr<Node>& start) const;
-  void foreach(const std::function<void(Key, Val)>& fn, const std::shared_ptr<Node>& node) const;
-  void mappify(std::shared_ptr<std::map<size_t, Node>> nodes, std::shared_ptr<Node> node, size_t&& idx) const;
+  [[nodiscard]] static std::shared_ptr<Node>
+  min(const std::shared_ptr<Node>& start);
+  void foreach (const std::function<void(Key, Val)>& fn,
+                const std::shared_ptr<Node>& node) const;
+  void mappify(std::shared_ptr<std::map<size_t, Node>> nodes,
+               std::shared_ptr<Node> node,
+               size_t&& idx) const;
   friend std::ostream& operator<<(std::ostream& stream, const BinaryTree& tr);
 
 public:
@@ -46,15 +52,16 @@ public:
 
   /**
    * @brief Get the value associated with a key, if it exists
-   * 
+   *
    * @param key associated with the desired value
    * @return std::optional<Val> the value associated with the provided key
    */
   [[nodiscard]] std::optional<Val> get(Key key) const;
 
   /**
-   * @brief Get the value associated with the next-largest key in the tree, if it exists
-   * 
+   * @brief Get the value associated with the next-largest key in the tree, if
+   * it exists
+   *
    * @param key reference element
    * @return std::optional<Val> value associated with the next-largest key
    */
@@ -76,13 +83,13 @@ public:
   [[nodiscard]] size_t size() const;
 
   /**
-   * @brief Add the k-v pair to the tree, overwrite the value of the associated key
-   *        if it's already in the tree 
+   * @brief Add the k-v pair to the tree, overwrite the value of the associated
+   * key if it's already in the tree
    */
   void insert(Key key, Val val);
 
   /**
-   * @brief Remove a k-v pair from the tree 
+   * @brief Remove a k-v pair from the tree
    */
   void drop(Key key);
 
@@ -93,10 +100,11 @@ public:
 
   /**
    * @brief Iterate over the tree and execute some function on each k-v pair
-   * 
-   * @param fn function to apply to each k-v pair, but it cannot modify any key/value
+   *
+   * @param fn function to apply to each k-v pair, but it cannot modify any
+   * key/value
    */
-  void foreach(const std::function<void(Key, Val)>& fn) const;
+  void foreach (const std::function<void(Key, Val)>& fn) const;
 };
 
 } // namespace tree
