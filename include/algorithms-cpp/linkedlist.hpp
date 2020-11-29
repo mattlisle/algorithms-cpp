@@ -18,10 +18,10 @@ std::ostream& operator<<(std::ostream& strm, const LinkedList<T>& lst);
 
 /**
  * @brief Basic implementation of a singly-linked list
- * 
+ *
  * Elements that are added are prepended, so insert and removal from the
  * start of the list can happen in constant time.
- * 
+ *
  * @tparam T type of element in the list
  */
 template <typename T>
@@ -43,42 +43,42 @@ private:
 public:
   /**
    * @brief Construct a new Linked List object pre-filled with elements
-   * 
+   *
    * @param elems elements provided in the initializer list
    */
   LinkedList(std::initializer_list<T> elems);
 
   /**
    * @brief Copy Linked List object
-   * 
+   *
    * @param lst list to copy
    */
   LinkedList(LinkedList& lst);
 
   /**
    * @brief Move Linked List object
-   * 
+   *
    * @param lst list to move
    */
   LinkedList(LinkedList&& lst) noexcept;
 
   /**
    * @brief Assign a copy of the provided list
-   * 
+   *
    * @param lst list to copy
    */
   LinkedList& operator=(const LinkedList& lst);
 
   /**
    * @brief Move the provided list to another list object
-   * 
+   *
    * @param lst list to move
    */
   LinkedList& operator=(LinkedList&& lst) noexcept;
 
   /**
    * @brief Destroy the Linked List object
-   * 
+   *
    */
   ~LinkedList() noexcept;
 
@@ -95,22 +95,23 @@ public:
 
   /**
    * @brief Find the element matching the provided condition, if any
-   * 
-   * @param comparator comparison that will be applied to each element in the list
+   *
+   * @param comparator comparison that will be applied to each element in the
+   * list
    * @return std::optional<T> the matching element, if it exists
    */
   std::optional<T> find(std::function<bool(T)> comparator);
 
   /**
    * @brief Add an element to the start of the list in constant time
-   * 
+   *
    * @param elem element to add
    */
   void prepend(const T& elem);
 
   /**
    * @brief Delete elements starting from the start of the list
-   * 
+   *
    * @param n number of elements to delete, if greater than LinkedList::size(),
    *          the list will be left empty
    */
@@ -221,7 +222,7 @@ void LinkedList<T>::prepend(const T& elem) {
 
 template <typename T>
 void LinkedList<T>::drop(size_t n) noexcept {
-  for (size_t i = 0; i < n ; ++i) {
+  for (size_t i = 0; i < n; ++i) {
     if (first == nullptr) {
       break;
     } else {

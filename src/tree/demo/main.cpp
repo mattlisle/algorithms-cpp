@@ -1,6 +1,6 @@
-#include <iostream>
 #include "tree.hpp"
 #include "util.hpp"
+#include <iostream>
 #include <memory>
 #include <string>
 #include <utility>
