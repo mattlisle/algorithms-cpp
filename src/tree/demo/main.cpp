@@ -32,8 +32,8 @@ int main(int argc, char** argv) {
     exit(1);
   }
 
-  cout << bin_tree.successor(2).value() << endl;
-  cout << bin_tree.successor(3).value() << endl;
+  cout << bin_tree << endl;
+  // cout << bin_tree.successor(3).value() << endl;
 
   return 0;
 }
