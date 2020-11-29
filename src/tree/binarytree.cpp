@@ -52,6 +52,12 @@ void BinaryTree::mappify(std::shared_ptr<std::map<size_t, BinaryTree::Node>> nod
   }
 }
 
+BinaryTree::BinaryTree(std::initializer_list<std::pair<Key, Val>> elems) {
+  for (const auto& pair: elems) {
+    insert(pair.first, pair.second);
+  }
+}
+
 [[nodiscard]] std::optional<Val> BinaryTree::get(Key key) const {
   auto node_opt = get_node(key);
   if (node_opt.has_value()) {
@@ -74,7 +80,7 @@ void BinaryTree::mappify(std::shared_ptr<std::map<size_t, BinaryTree::Node>> nod
       }
       return parent->value;
     } else {
-      return min(node)->value;
+      return min(node->right)->value;
     }
   } else {
     return {};
@@ -94,17 +100,20 @@ void BinaryTree::mappify(std::shared_ptr<std::map<size_t, BinaryTree::Node>> nod
 }
 
 void BinaryTree::insert(Key key, Val val) {
-  auto new_node = std::make_shared<BinaryTree::Node>(key, val);
   std::shared_ptr<BinaryTree::Node> parent = nullptr;
   auto child = root;
   while (child != nullptr) {
     parent = child;
     if (key < child->key) {
       child = child->left;
+    } else if (key == child->key) {
+      child->value = val;
+      return;
     } else {
       child = child->right;
     }
   }
+  auto new_node = std::make_shared<BinaryTree::Node>(key, val);
   new_node->parent = parent;
   if (parent == nullptr) {
     root = std::move(new_node);
@@ -159,25 +168,26 @@ void BinaryTree::foreach(const std::function<void(Key, Val)>& fn) const {
 }
 
 std::ostream& operator<<(std::ostream& stream, const BinaryTree& tr) {
-  size_t n_nodes = tr.size();
   auto node_map = std::make_shared<std::map<size_t, BinaryTree::Node>>();
   tr.mappify(node_map, tr.root, 0);
   if (!node_map->empty()) {
-    size_t height = ceil(log2(n_nodes));
-    size_t width = pow(2, height);
+    auto max_idx = static_cast<double>(node_map->rbegin()->first);
+    auto height = floor(log2(max_idx + 1));
     size_t checkpoint = 1;
     auto append_elem = [&stream,&node_map](size_t idx) {
       if (node_map->find(idx) != node_map->end()) {
         stream << node_map->at(idx).key;
       } else {
-        stream << ' ';
+        stream << '-';
       }
     };
-    for (size_t idx = 0; idx <= node_map->rbegin()->first; ++idx) {
+    for (size_t idx = 0; idx < pow(2, height + 1) - 1; ++idx) {
       append_elem(idx);
       if (idx + 1 == checkpoint) {
         stream << std::endl;
         checkpoint = 2 * checkpoint + 1;
+      } else if (idx % 2 == 0) {
+        stream << '|';
       } else {
         stream << ',';
       }
