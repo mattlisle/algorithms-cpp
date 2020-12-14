@@ -1,6 +1,7 @@
 #ifndef DP_H
 #define DP_H
 
+#include <iostream>
 #include <utility>
 #include <vector>
 
@@ -14,6 +15,9 @@ struct CutInstructions {
 };
 
 CutInstructions cut_rod(const std::vector<size_t>& prices_per_length);
+
+void print_matrix_chain_order(std::stringstream& strm,
+                              const std::vector<size_t>& dimension_chain);
 
 } // namespace dp
 
