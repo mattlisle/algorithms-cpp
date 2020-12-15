@@ -2,11 +2,7 @@
 #include "util.hpp"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
-#include <functional>
 #include <gmock/gmock-matchers.h>
-#include <iostream>
-#include <limits>
-#include <string>
 
 using namespace std;
 
@@ -34,4 +30,11 @@ TEST_F(DpTest, table_functionality) { // NOLINT
   stringstream stream;
   dp::print_matrix_chain_order(stream, dimension_chain);
   ASSERT_EQ(stream.str(), "((M0(M1M2))((M3M4)M5))");
+}
+
+TEST_F(DpTest, longest_subsequence_functionality) { // NOLINT
+  std::vector<int> a {0, 1, 2, 1, 3, 0, 1};
+  std::vector<int> b {1, 3, 2, 0, 1, 0};
+  auto subseq = dp::longest_subsequence(a, b);
+  ASSERT_THAT(subseq, testing::ElementsAre(1, 2, 1, 0));
 }

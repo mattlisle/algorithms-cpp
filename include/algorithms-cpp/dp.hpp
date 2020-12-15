@@ -2,6 +2,7 @@
 #define DP_H
 
 #include <iostream>
+#include <sstream>
 #include <utility>
 #include <vector>
 
@@ -18,6 +19,9 @@ CutInstructions cut_rod(const std::vector<size_t>& prices_per_length);
 
 void print_matrix_chain_order(std::stringstream& strm,
                               const std::vector<size_t>& dimension_chain);
+
+std::vector<int> longest_subsequence(const std::vector<int>& a,
+                                     const std::vector<int>& b);
 
 } // namespace dp
 

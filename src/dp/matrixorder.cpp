@@ -1,6 +1,5 @@
 #include "dp.hpp"
 #include "util.hpp"
-#include <sstream>
 
 namespace dp {
 namespace {
